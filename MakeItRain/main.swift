@@ -6,6 +6,28 @@
 //  Copyright © 2016 Make School. All rights reserved.
 //
 
+/*
+
+This file is intended as a utility to populate your parse server with some
+starter data.
+
+It breaks MANY best practices in iOS development
+* Synchronous HTTP Requests are bad!
+* Synchronous HTTP Requests are bad!
+* Synchronous HTTP Requests are bad!
+* Password Security
+* Forcing tries that might fail!
+* "Got to catch them all" error handling
+* And many more swift best practices as well
+* And did I mention that synchronous HTTP Requests are bad!
+
+Use at your own risk. No warranty expressed or implied.
+
+
+
+*/
+
+
 import Foundation
 
 import Parse
@@ -25,13 +47,15 @@ func setupParse() {
 }
 
 func randomUsername() -> String {
-  let names = ["bob", "cindy", "may", "charles", "javier"]
-  // get a name at random
-  let name = names[Int(arc4random_uniform(UInt32(names.count)))]
+  let first_names = ["bob", "cindy", "may", "charles", "javier"]
+  let last_names = ["randy", "jacob", "james", "daniel", "trump"]
+  // get two names at random. firsty firsty!!!
+  let first_name = first_names[Int(arc4random_uniform(UInt32(first_names.count)))]
+  let last_name = last_names[Int(arc4random_uniform(UInt32(last_names.count)))]
   // get a 4 digit number at random
   let number = arc4random_uniform(8999) + 1000
 
-  return "\(name)\(number)"
+  return "\(first_name)\(last_name)\(number)"
 }
 
 
@@ -52,11 +76,13 @@ func makeFakeUser(username: String) {
   acl.publicReadAccess = true
   acl.setWriteAccess(true, forUser: fakeUser)
 
-
-  let imageFile = PFFile(data: badRequest("http://thecatapi.com/api/images/get"))
+  guard let imageFile = PFFile(data: badRequest("http://thecatapi.com/api/images/get")) else {
+    print("could not fetch image")
+    return
+  }
 
   do {
-    try imageFile!.save()
+    try imageFile.save()
   } catch {
     print("could not upload image")
     return
@@ -65,7 +91,7 @@ func makeFakeUser(username: String) {
   print("Making fake post for user: \(username)")
   let fakePost = PFObject(className: "Post")
   fakePost.setObject(fakeUser, forKey: "user")
-  fakePost.setObject(imageFile!, forKey: "imageFile")
+  fakePost.setObject(imageFile, forKey: "imageFile")
   fakePost.ACL = acl
 
   do {
