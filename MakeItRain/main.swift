@@ -10,6 +10,12 @@ import Foundation
 
 import Parse
 
+func badRequest(url: String) -> NSData {
+  let request = NSURLRequest(URL: NSURL(string: url)!)
+  var response: NSURLResponse?
+  return try! NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+}
+
 func setupParse() {
   let configuration = ParseClientConfiguration {
     $0.applicationId = "{{your-parse-app-name}}"
@@ -46,9 +52,20 @@ func makeFakeUser(username: String) {
   acl.publicReadAccess = true
   acl.setWriteAccess(true, forUser: fakeUser)
 
+
+  let imageFile = PFFile(data: badRequest("http://thecatapi.com/api/images/get"))
+
+  do {
+    try imageFile!.save()
+  } catch {
+    print("could not upload image")
+    return
+  }
+
   print("Making fake post for user: \(username)")
   let fakePost = PFObject(className: "Post")
   fakePost.setObject(fakeUser, forKey: "user")
+  fakePost.setObject(imageFile!, forKey: "imageFile")
   fakePost.ACL = acl
 
   do {
