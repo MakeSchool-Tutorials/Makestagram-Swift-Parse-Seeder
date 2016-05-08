@@ -30,13 +30,14 @@ func randomUsername() -> String {
 
 
 func makeFakeUser(username: String) {
+  print("Making fake user: \(username)")
   let fakeUser = PFUser()
   fakeUser.username = username
   fakeUser.password = "\(username)doesnothaveapassword"
   do{
     try fakeUser.signUp()
   } catch {
-    print("could not create user")
+    print("could not create user \(username)")
     return
   }
 
@@ -45,6 +46,7 @@ func makeFakeUser(username: String) {
   acl.publicReadAccess = true
   acl.setWriteAccess(true, forUser: fakeUser)
 
+  print("Making fake post for user: \(username)")
   let fakePost = PFObject(className: "Post")
   fakePost.setObject(fakeUser, forKey: "user")
   fakePost.ACL = acl
@@ -52,13 +54,16 @@ func makeFakeUser(username: String) {
   do {
     try fakePost.save()
   } catch {
-    print("could not create user")
+    print("could not create post for user \(username)")
   }
 }
 
 print ("this app is single threaded, and does not have a UI, so we are going to block the main thread")
 print ("setting up parse")
+let number_of_users = 10
 setupParse()
-print ("making a fake user")
-makeFakeUser(randomUsername())
-sleep(10)
+for x in 1...number_of_users {
+  print ("making fake user: \(x)/\(number_of_users)")
+  makeFakeUser(randomUsername())
+}
+print ("done")
