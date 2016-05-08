@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D4124922B61B3D920575306 /* Pods_MakeItRain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CF72741D194B63AEE3AB2F /* Pods_MakeItRain.framework */; };
 		967F0E0E1CDEBCE2005694E0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F0E0D1CDEBCE2005694E0 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +24,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		71E01316403087B1DAA4E310 /* Pods-MakeItRain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeItRain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MakeItRain/Pods-MakeItRain.debug.xcconfig"; sourceTree = "<group>"; };
 		967F0E0A1CDEBCE2005694E0 /* MakeItRain */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MakeItRain; sourceTree = BUILT_PRODUCTS_DIR; };
 		967F0E0D1CDEBCE2005694E0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C9CF72741D194B63AEE3AB2F /* Pods_MakeItRain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MakeItRain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B17CE25044BF92BD8FB71D /* Pods-MakeItRain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakeItRain.release.xcconfig"; path = "Pods/Target Support Files/Pods-MakeItRain/Pods-MakeItRain.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +36,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D4124922B61B3D920575306 /* Pods_MakeItRain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A33B85239E10EB9B428F024 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9CF72741D194B63AEE3AB2F /* Pods_MakeItRain.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EA9B5F4175CBDD4DF6DD40E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71E01316403087B1DAA4E310 /* Pods-MakeItRain.debug.xcconfig */,
+				F3B17CE25044BF92BD8FB71D /* Pods-MakeItRain.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		967F0E011CDEBCE2005694E0 = {
 			isa = PBXGroup;
 			children = (
 				967F0E0C1CDEBCE2005694E0 /* MakeItRain */,
 				967F0E0B1CDEBCE2005694E0 /* Products */,
+				5EA9B5F4175CBDD4DF6DD40E /* Pods */,
+				3A33B85239E10EB9B428F024 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,9 +93,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 967F0E111CDEBCE2005694E0 /* Build configuration list for PBXNativeTarget "MakeItRain" */;
 			buildPhases = (
+				31B7BFEA6B873A09268442A2 /* Check Pods Manifest.lock */,
 				967F0E061CDEBCE2005694E0 /* Sources */,
 				967F0E071CDEBCE2005694E0 /* Frameworks */,
 				967F0E081CDEBCE2005694E0 /* CopyFiles */,
+				398651E7184D4739599BA1EC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -113,6 +139,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31B7BFEA6B873A09268442A2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		398651E7184D4739599BA1EC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MakeItRain/Pods-MakeItRain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		967F0E061CDEBCE2005694E0 /* Sources */ = {
@@ -208,6 +267,7 @@
 		};
 		967F0E121CDEBCE2005694E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71E01316403087B1DAA4E310 /* Pods-MakeItRain.debug.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -215,6 +275,7 @@
 		};
 		967F0E131CDEBCE2005694E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3B17CE25044BF92BD8FB71D /* Pods-MakeItRain.release.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -239,6 +300,7 @@
 				967F0E131CDEBCE2005694E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
