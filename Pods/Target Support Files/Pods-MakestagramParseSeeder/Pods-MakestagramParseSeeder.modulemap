@@ -1,0 +1,6 @@
+framework module Pods_MakestagramParseSeeder {
+  umbrella header "Pods-MakestagramParseSeeder-umbrella.h"
+
+  export *
+  module * { export * }
+}
